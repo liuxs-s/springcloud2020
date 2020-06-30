@@ -13,5 +13,5 @@ public interface PaymentService {
 
     public int save(Payment payment);
 
-    public Payment getPaymentById(@Param("id") String id);
+    public Payment getPaymentById(@Param("id") Long id);
 }

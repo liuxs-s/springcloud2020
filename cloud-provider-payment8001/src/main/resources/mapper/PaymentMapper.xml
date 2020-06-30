@@ -6,7 +6,7 @@
         insert into payment(serial) values (#{serial})
     </insert>
 
-    <resultMap id="BasePaymentMap" type="com.cumt.springcloud.entity.Payment">
+    <resultMap id="BasePaymentMap" type="Payment">
         <id column="id" property="id" jdbcType="BIGINT" javaType="Long"></id>
         <id column="serial" property="serial" jdbcType="VARCHAR" javaType="String"></id>
     </resultMap>
