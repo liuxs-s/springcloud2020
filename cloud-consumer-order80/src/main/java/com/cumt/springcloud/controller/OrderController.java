@@ -18,7 +18,9 @@ public class OrderController {
     @Resource
     private RestTemplate restTemplate;
 
-    private static final String PAYMENT_URL = "http://localhost:8001";
+    //private static final String PAYMENT_URL = "http://localhost:8001";
+    // 通过在eureka上注册过的微服务名称调用
+    public static final String PAYMENT_URL="http://CLOUD-PAYMENT-SERVICE";
 
     @GetMapping("/consumer/payment/get/{id}")
     public R<Payment> getPaymentById(@PathVariable("id")Long id){

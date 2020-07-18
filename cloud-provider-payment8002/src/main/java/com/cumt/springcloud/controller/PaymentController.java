@@ -4,15 +4,10 @@ import com.cumt.springcloud.entity.Payment;
 import com.cumt.springcloud.service.PaymentService;
 import com.cumt.springcloud.utils.R;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * 描述：PaymentController
@@ -30,8 +25,6 @@ public class PaymentController {
     private PaymentService paymentService;
     @Value("${server.port}")
     private String PORT;
-    @Autowired
-    private DiscoveryClient discoveryClient;
 
     @PostMapping("/payment/save")
     public R create(@RequestBody Payment payment){
@@ -53,20 +46,5 @@ public class PaymentController {
         }else{
             return new R(400,"没有对应记录,查询ID: "+id,null);
         }
-    }
-
-    @GetMapping(value = "payment/discovery")
-    public Object discovery(){
-        List<String> services = discoveryClient.getServices();
-        for (String service : services) {
-            log.info("**************service***************"+service);
-        }
-        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
-        for (ServiceInstance instance : instances) {
-            log.info(instance.getServiceId()+"\t"+instance.getInstanceId()+"\t"+instance.getHost()+"\t"+instance.getUri()
-                    +"\t"+instance.getPort()
-            );
-        }
-        return this.discoveryClient;
     }
 }
