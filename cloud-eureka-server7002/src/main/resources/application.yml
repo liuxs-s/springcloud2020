@@ -1,5 +1,5 @@
 server:
-  port: 7001
+  port: 7002
 spring:
   application:
     name: cloud-eureka-service
@@ -8,13 +8,10 @@ spring:
 eureka:
   instance:
     #hostname: localhost #eureka服务端实例名称
-    hostname: eureka7001.com
+    hostname: eureka7002.com
   client:
     register-with-eureka: false #表示不向注册中心注册自己
     fetch-registry: false #false表示自己就是注册中心，我的职责就是维护服务实例,并不去检索服务
     service-url:
       #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-      defaultZone: http://eureka7002.com:7002/eureka/
-  server:
-    enable-self-preservation: false #关闭自我保护
-    eviction-interval-timer-in-ms: 2000
+      defaultZone: http://eureka7001.com:7001/eureka/
