@@ -1,0 +1,30 @@
+package com.cumt.springcloud.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
+
+/**
+ * @description: PaymentController
+ * @author: liuxiaosong
+ * @Date: 2020/7/29
+ * @version: 1.0
+ *
+ * @RestController 与@Controller不同，使用报错
+ */
+@RestController
+@Slf4j
+public class PaymentController {
+    @Value("${server.port}")
+    private String serverPort;
+
+    @RequestMapping(value = "/payment/consul")
+    public String paymentConsul() {
+        return "SpringCloud with consul:" + serverPort + "\t" + UUID.randomUUID().toString();
+    }
+
+}
