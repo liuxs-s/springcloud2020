@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 描述：PaymentController
@@ -68,5 +69,15 @@ public class PaymentController {
             );
         }
         return this.discoveryClient;
+    }
+
+    @GetMapping(value = "/payment/timeout")
+    public String feignTimeout(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return PORT;
     }
 }
